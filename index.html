@@ -580,8 +580,8 @@
     <div class="eyebrow" style="text-align:center">// Ready to shoot</div>
     <h2>Let's take the<br><em>next frame</em>.</h2>
     <p>I'm looking for Software Engineering internships. If you're building something interesting, I'd like to hear about it.</p>
-    <a class="big-shutter" href="mailto:prathammasurkar7@gmail.com" data-shutter aria-label="Email me"><span>SHOOT</span></a>
-    <div class="press">PRESS TO SEND AN EMAIL</div>
+    <a class="big-shutter" id="mailShutter" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=prathammasurkar7@gmail.com&amp;su=Hello%20Pratham" target="_blank" rel="noopener" data-shutter aria-label="Email me (opens Gmail)"><span>SHOOT</span></a>
+    <div class="press">PRESS TO SEND AN EMAIL · <a href="mailto:prathammasurkar7@gmail.com" style="color:var(--amber)">or use your mail app</a></div>
     <div class="links">
       <a class="btn" href="https://www.linkedin.com/in/pratham-masurkar-681959293/" target="_blank" rel="noopener">LinkedIn ↗</a>
       <a class="btn" href="https://github.com/Stranger0107" target="_blank" rel="noopener">GitHub ↗</a>
@@ -626,6 +626,13 @@
     catch { btn.textContent = 'select & copy'; }
     setTimeout(() => btn.textContent = 'copy', 1800);
   }));
+
+  // shutter: opens Gmail in a new tab and copies the address as a fallback
+  $('#mailShutter').addEventListener('click', () => {
+    navigator.clipboard?.writeText('prathammasurkar7@gmail.com')
+      .then(() => say('<b>●</b> Opening Gmail · address also copied'))
+      .catch(() => {});
+  });
 
   // live clock in viewfinder
   const clock = $('#clock');
